@@ -42,7 +42,7 @@ app.use("/messages", sessionAuth.sessionAuth, messagesRouter);
 app.use("/tweets", tweetsRouter);
 
 app.get("/", (req, res) => {
-  let returnString = `Welcome to the Twitter Clone API.\n\n`;
+  let returnString = `Welcome to the Twitter API Clone.\n\n`;
 
   if (req.session.loggedin && req.session.username) {
     returnString += `You are currently logged in as ${req.session.username}.`;
