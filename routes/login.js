@@ -27,15 +27,15 @@ router.post("/", (req, res) => {
             // Login successful
             req.session.loggedin = true;
             req.session.username = user.username;
-            res.redirect("/");
+            return res.redirect("/");
           })
           .catch((err) => {
-            res.status(500).json({ errors: err });
+            return res.status(500).json({ errors: err });
           });
       }
     })
     .catch((err) => {
-      res.status(500).json({ errors: err });
+      return res.status(500).json({ errors: err });
     });
 });
 
