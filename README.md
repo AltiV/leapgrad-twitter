@@ -77,3 +77,4 @@ This application was tested using Mocha & Chai. If you have downloaded or cloned
 $ npm test
 ```
 
+Note that some of the test cases are reliant on data in the pre-existing database, so they will not work with a fresh database.
