@@ -4,7 +4,7 @@
 
 API Location: https://twitter-api-clone-express.herokuapp.com/
 
-This is a backend application that simulates some functionalities of Twitter, including user authentication, sending messages to other users, and posting tweets.
+This is a backend application that simulates some functionalities of Twitter, including user authentication, sending messages to other users, and posting tweets. Authentication is handled using sessions via express-session.
 
 ## Techologies Used
 - Node.js
@@ -55,10 +55,25 @@ Note that some routes require the user to be logged in.
 
 ## Installation & Running Application
 
-Download or clone the repository, create a .env file copy/paste the text from .env.example, filling in your own strings, and run the following code:
+Download or clone the repository, create a .env file copy/paste the text from .env.example, filling in your own strings, cd to the directory, and run the following code:
 
 ```
 $ npm install
-$ npm run start
+$ npm start
+```
+
+To start using the application, you can signup using the `/signup` route, or use the standard credentials for the `/login` route:
+
+```
+username: username
+password: password
+```
+
+## Testing
+
+This application was tested using Mocha & Chai. If you have downloaded or cloned the repository, you can run these tests using the following code:
+
+```
+$ npm test
 ```
 

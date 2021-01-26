@@ -72,7 +72,7 @@ router.patch(
   (req, res) => {
     const { tweet } = req.body;
 
-    if (tweet.username !== req.session.username) {
+    if (req.tweet.username !== req.session.username) {
       return res.status(400).send("You cannot edit someone else's tweet.");
     }
 
@@ -86,7 +86,7 @@ router.patch(
     req.tweet
       .save()
       .then(() => {
-        return res.redirect(`/tweets`);
+        return res.status(200).json(req.tweet);
       })
       .catch((error) => {
         return res.status(500).json(error);
@@ -104,10 +104,10 @@ router.delete(
       return res.status(400).send("You cannot delete someone else's tweet.");
     }
 
-    req.tweet.remove((error, _result) => {
+    req.tweet.remove((error, result) => {
       if (error) return res.status(500).json(error);
 
-      return res.redirect(`/tweets`);
+      return res.status(200).json({ result });
     });
   }
 );
@@ -127,7 +127,7 @@ router.patch(
     req.tweet
       .save()
       .then(() => {
-        return res.status(200).json({ tweet: req.tweet });
+        return res.status(200).json(req.tweet);
       })
       .catch((error) => {
         return res.status(500).json(error);
@@ -155,7 +155,7 @@ router.patch(
     req.tweet
       .save()
       .then(() => {
-        return res.status(200).json({ tweet: req.tweet });
+        return res.status(200).json(req.tweet);
       })
       .catch((error) => {
         return res.status(500).json(error);
