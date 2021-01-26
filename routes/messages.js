@@ -3,7 +3,6 @@ const router = express.Router();
 
 const middleware = require("../middleware/middleware");
 
-const User = require("../models/User");
 const Message = require("../models/Message");
 
 // GET received messages from users that sent message to logged in user

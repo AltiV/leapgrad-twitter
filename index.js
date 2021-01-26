@@ -4,17 +4,16 @@ const express = require("express");
 const session = require("express-session");
 const dotenv = require("dotenv");
 const sessionAuth = require("./middleware/middleware");
-const axios = require("axios");
 
 // Initialize express application
 const app = express();
 
 app.use(express.json());
 
+// Set up session to store user data while logged in
 app.use(
   session({
-    // TODO: Replace this with env variable after
-    secret: "something",
+    secret: process.env.SESSION_SECRET,
     resave: true,
     saveUninitialized: true,
   })
@@ -32,12 +31,15 @@ const loginRouter = require("./routes/login");
 const logoutRouter = require("./routes/logout");
 const profileRouter = require("./routes/profile");
 const messagesRouter = require("./routes/messages");
+const tweetsRouter = require("./routes/tweets");
 
 app.use("/signup", signupRouter);
 app.use("/login", loginRouter);
 app.use("/logout", logoutRouter);
 app.use("/profile", profileRouter);
+// Messages are only avaliable if logged in
 app.use("/messages", sessionAuth.sessionAuth, messagesRouter);
+app.use("/tweets", tweetsRouter);
 
 app.get("/", (req, res) => {
   let returnString = `Welcome to the LeapGrad Twitter API.\n\n`;
@@ -51,17 +53,6 @@ app.get("/", (req, res) => {
   res.send(returnString);
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on port: ${PORT}`);
-  // axios
-  //   .post("http://localhost:3000/login", {
-  //     username: "username",
-  //     password: "password",
-  //   })
-  //   .then((response) => {
-  //     console.log(response.data);
-  //   })
-  //   .catch((err) => console.log(err));
-});
+app.listen(PORT, () => console.log(`Server running on port: ${PORT}`));
 
 module.exports = app; // for testing
