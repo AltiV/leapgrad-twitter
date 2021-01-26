@@ -12,35 +12,46 @@ This is a backend application that simulates some functionalities of Twitter, in
 
 ## Routes
 
-### User Authentication
+Note that some routes require the user to be logged in.
 
-`/`
-`/signup`
-`/login`
-`/logout`
+### Authentication
+
+| Description | Route     | Method | Request Body       |
+|-------------|-----------|--------|--------------------|
+| Home Page   | `/`       | `GET`  |                    |
+| Signup      | `/signup` | `POST` | username, password |
+| Login       | `/login`  | `POST` | username, password |
+| Logout      | `/logout` | `GET`  |                    |
 
 ### Profile
 
-`/profile`
+| Description                        | Route                | Method | Request Body |
+|------------------------------------|----------------------|--------|--------------|
+| Show Profile of Authenticated User | `/profile`           | `GET`  |              |
+| Show Profile of Provided User      | `/profile/:username` | `GET`  |              |
 
 ### Messages
 
-`/messages`
-`/messages/:username`
-`/messages/:username/send`
-`/messages/edit/:id`
-`/messages/delete/:id`
+| Description                         | Route                      | Method   | Request Body |
+|-------------------------------------|----------------------------|----------|--------------|
+| Show Received Messages              | `/messages`                | `GET`    |              |
+| Show Messages Between Provided User | `/messages/:username`      | `GET`    |              |
+| Send Message to Provided User       | `/messages/:username/send` | `POST`   | message      |
+| Edit Message                        | `/messages/edit/:id`       | `PATCH`  | message      |
+| Delete Message                      | `/messages/delete/:id`     | `DELETE` |              |
 
 ### Tweets
 
-`/tweets`
-`/tweets/:id`
-`/tweets/user/:username`
-`/tweets/create`
-`/tweets/edit/:id`
-`/tweets/delete/:id`
-`/tweets/like/:id`
-`/tweets/retweet/:id`
+| Description                           | Route                    | Method   | Request Body |
+|---------------------------------------|--------------------------|----------|--------------|
+| Show All Tweets of Authenticated User | `/tweets`                | `GET`    |              |
+| Show Tweet by ID                      | `/tweets/:id`            | `GET`    |              |
+| Show All Tweets of Provided User      | `/tweets/user/:username` | `POST`   |              |
+| Create Tweet                          | `/tweets/create`         | `POST`   | tweet        |
+| Edit Tweet                            | `/tweets/edit/:id`       | `PATCH`  | tweet        |
+| Delete Tweet                          | `/tweets/delete/:id`     | `DELETE` |              |
+| Like/Unlike Tweet                     | `/tweets/like/:id`       | `PATCH`  |              |
+| Retweet Tweet                         | `/tweets/retweet/:id`    | `PATCH`  |              |
 
 ## Installation & Running Application
 
